@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+{% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Farm-D</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <style type="text/css">
+    .fa,
+    .fas{
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      display: inline-block;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1; }
+
+
+    .fa-bars:before {
+      content: "\f0c9"; }
+
+
+    .fa,
+    .fas {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900; }
+
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <link href="{% static 'grayscale.css' %}"  rel="stylesheet">
+  <style type="text/css">
+
+#mainNav {
+  min-height: 56px;
+  background-color: #fff;
+}
+
+#mainNav .navbar-toggler {
+  font-size: 80%;
+  padding: 0.75rem;
+  color: #64a19d;
+  border: 1px solid #64a19d;
+}
+
+#mainNav .navbar-toggler:focus {
+  outline: none;
+}
+
+#mainNav .navbar-brand {
+  color: #161616;
+  font-weight: 700;
+  padding: .9rem 0;
+}
+
+#mainNav .navbar-nav .nav-item:hover {
+  color: fade(white, 80%);
+  outline: none;
+  background-color: transparent;
+}
+
+#mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
+  outline: none;
+  background-color: transparent;
+}
+
+@media (min-width: 992px) {
+  #mainNav {
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    background-color: transparent;
+    -webkit-transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+  }
+  #mainNav .navbar-brand {
+    padding: .5rem 0;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  #mainNav .nav-link {
+    -webkit-transition: none;
+    transition: none;
+    padding: 2rem 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  #mainNav .nav-link:hover {
+    color: rgba(255, 255, 255, 0.75);
+  }
+  #mainNav .nav-link:active {
+    color: white;
+  }
+  #mainNav.navbar-shrink {
+    background-color: #fff;
+  }
+  #mainNav.navbar-shrink .navbar-brand {
+    color: #161616;
+  }
+  #mainNav.navbar-shrink .nav-link {
+    color: #161616;
+    padding: 1.5rem 1.5rem 1.25rem;
+    border-bottom: 0.25rem solid transparent;
+  }
+  #mainNav.navbar-shrink .nav-link:hover {
+    color: #64a19d;
+  }
+  #mainNav.navbar-shrink .nav-link:active {
+    color: #467370;
+  }
+  #mainNav.navbar-shrink .nav-link.active {
+    color: #64a19d;
+    outline: none;
+    border-bottom: 0.25rem solid #64a19d;
+  }
+}
+
+
+.masthead h1 {
+  font-family: 'Varela Round';
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.8rem;
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.masthead h2 {
+  max-width: 20rem;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .masthead h1 {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead {
+    height: 100vh;
+    padding: 0;
+  }
+  .masthead h1 {
+    font-size: 6.5rem;
+    line-height: 6.5rem;
+    letter-spacing: 0.8rem;
+  }
+  .masthead h2 {
+    max-width: 30rem;
+    font-size: 1.25rem;
+  }
+}
+
+.btn {
+  -webkit-box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
+  padding: 1.25rem 2rem;
+  font-family: 'Varela Round';
+  font-size: 80%;
+  text-transform: uppercase;
+  letter-spacing: .15rem;
+  border: 0;
+}
+
+.btn-primary {
+  background-color: #64a19d;
+}
+
+.btn-primary:hover {
+  background-color: #4f837f;
+}
+
+.btn-primary:focus {
+  background-color: #4f837f;
+  color: white;
+}
+
+.btn-primary:active {
+  background-color: #467370 !important;
+}
+
+.about-section {
+  padding-top: 10rem;
+  background: -webkit-gradient(linear, left top, left bottom, from(#161616), color-stop(75%, rgba(22, 22, 22, 0.9)), to(rgba(22, 22, 22, 0.8)));
+  background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%);
+}
+
+.about-section p {
+  margin-bottom: 5rem;
+}
+
+.projects-section {
+  padding: 10rem 0;
+}
+
+.projects-section .featured-text {
+  padding: 2rem;
+}
+
+@media (min-width: 992px) {
+  .projects-section .featured-text {
+    padding: 0 0 0 2rem;
+    border-left: 0.5rem solid #64a19d;
+  }
+}
+
+.projects-section .project-text {
+  padding: 3rem;
+  font-size: 90%;
+}
+
+@media (min-width: 992px) {
+  .projects-section .project-text {
+    padding: 5rem;
+  }
+  .projects-section .project-text hr {
+    border-color: #64a19d;
+    border-width: .25rem;
+    width: 30%;
+  }
+}
+
+.signup-section {
+  padding: 10rem 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+.signup-section .form-inline input {
+  -webkit-box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
+  padding: 1.25rem 2rem;
+  height: auto;
+  font-family: 'Varela Round';
+  font-size: 80%;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+  border: 0;
+}
+
+.contact-section {
+  padding: 5rem 0 0;
+}
+
+.contact-section .card {
+  border: 0;
+  border-bottom: 0.25rem solid #64a19d;
+}
+
+.contact-section .card h4 {
+  font-size: 0.8rem;
+  font-family: 'Varela Round';
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+}
+
+.contact-section .card hr {
+  border-color: #64a19d;
+  border-width: 0.25rem;
+  width: 3rem;
+}
+
+.contact-section .social {
+  margin-top: 5rem;
+}
+
+.contact-section .social a {
+  text-align: center;
+  height: 3rem;
+  width: 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 100%;
+  line-height: 3rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.contact-section .social a:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-section .social a:active {
+  color: #fff;
+}
+
+body {
+  font-family: 'Nunito';
+  letter-spacing: 0.0625em;
+}
+
+a {
+  color: #64a19d;
+}
+
+a:focus, a:hover {
+  text-decoration: none;
+  color: #3c6360;
+}
+
+.bg-black {
+  background-color: #161616 !important;
+}
+
+.bg-primary {
+  background-color: #64a19d !important;
+}
+
+.text-primary {
+  color: #64a19d !important;
+}
+
+footer {
+  padding: 5rem 0;
+}
+
+  </style>
+
+</head>
+
+<body id="page-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">RYTHU-BAZAR</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="buyer_login/">Buyer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="farmer_login/">Farmer</a>
+          </li>
+          {% ifnotequal user.is_authenticated 1 %}
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/signup/">Sign up</a>
+          </li>
+           &nbsp&nbsp
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/login/">Login</a>
+          </li>
+            {% else %}
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#">{{user}}</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/logout/">Logout</a>
+          </li>
+            {% endifnotequal %}
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">Farm-D</h1>
+        <h2 class="mx-auto mt-2 mb-5" style="color: white">A transparent and trustworthy portal to connect farmers directly to the consumers</h2>
+        <a href="#about" class="btn btn-primary js-scroll-trigger">Know More</a>
+      </div>
+    </div>
+  </header>
+
+
+
+  <section id="about" class="projects-section bg-light">
+    <div class="container">
+
+
+      <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+        <div class="col-xl-8 col-lg-7">
+          <img class="img-fluid mb-3 mb-lg-0" src="{% static '/images/buyer.jpg' %}" alt="image not found" >
+        </div>
+        <div class="col-xl-4 col-lg-5">
+          <div class="featured-text text-center text-lg-left">
+            <h4>About</h4>
+            <p class="text-black-50 mb-0">A lot of cases have been observed where the farmers do not get the right amount paid to them for the crops which are produced by them.<br><br> Our portal ensures a hassle-free service to connect the consumers directly to the farmers all across India.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="{% static '/images/buyer-2.jpg' %}"alt="image not found">
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-left">
+                <h4 class="text-white">Buyers</h4>
+                <p class="mb-0 text-white-50" style="color: white">Buyers get organic fruits, grains and vegetables directly from farmlands thus eliminating third-party vendors who sell them at a higher price with a lesser quality.</p>
+                <hr class="d-none d-lg-block mb-0 ml-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row justify-content-center no-gutters">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="{% static '/images/farmer.jpg' %}"alt="image not found">
+        </div>
+        <div class="col-lg-6 order-lg-first">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-right">
+                <h4 class="text-white">Farmers</h4>
+                <p class="mb-0 text-white-50" style="color: white">Farmers can easily put the information about the various crops they offer along with the information about price and quality.</p>
+                <hr class="d-none d-lg-block mb-0 mr-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="contact-section bg-black">
+    <div class="container"><div class="row"></div></div>
+  </section>
+
+  <footer class="bg-black small text-center text-white-50">
+    <div class="container" style="color: white">
+      RYTHU-BAZAR 2019
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script src="jquery.js"></script>
+  <script src="bootstrap.bundle.js"></script>
+
+  <script>
+
+(function (factory) {
+  if (typeof define === "function" && define.amd) {
+    define(['jquery'], function ($) {
+      return factory($);
+    });
+  } else if (typeof module === "object" && typeof module.exports === "object") {
+    exports = factory(require('jquery'));
+  } else {
+    factory(jQuery);
+  }
+})(function($){
+
+$.easing.jswing = $.easing.swing;
+
+var pow = Math.pow,
+  sqrt = Math.sqrt,
+  sin = Math.sin,
+  cos = Math.cos,
+  PI = Math.PI,
+  c1 = 1.70158,
+  c2 = c1 * 1.525,
+  c3 = c1 + 1,
+  c4 = ( 2 * PI ) / 3,
+  c5 = ( 2 * PI ) / 4.5;
+
+
+function bounceOut(x) {
+  var n1 = 7.5625,
+    d1 = 2.75;
+  if ( x < 1/d1 ) {
+    return n1*x*x;
+  } else if ( x < 2/d1 ) {
+    return n1*(x-=(1.5/d1))*x + 0.75;
+  } else if ( x < 2.5/d1 ) {
+    return n1*(x-=(2.25/d1))*x + 0.9375;
+  } else {
+    return n1*(x-=(2.625/d1))*x + 0.984375;
+  }
+}
+
+$.extend( $.easing,
+{
+  def: 'easeOutQuad',
+  swing: function (x) {
+    return $.easing[$.easing.def](x);
+  },
+  easeInQuad: function (x) {
+    return x * x;
+  },
+  easeOutQuad: function (x) {
+    return 1 - ( 1 - x ) * ( 1 - x );
+  },
+  easeInOutQuad: function (x) {
+    return x < 0.5 ?
+      2 * x * x :
+      1 - pow( -2 * x + 2, 2 ) / 2;
+  },
+  easeInCubic: function (x) {
+    return x * x * x;
+  },
+  easeOutCubic: function (x) {
+    return 1 - pow( 1 - x, 3 );
+  },
+  easeInOutCubic: function (x) {
+    return x < 0.5 ?
+      4 * x * x * x :
+      1 - pow( -2 * x + 2, 3 ) / 2;
+  },
+  easeInQuart: function (x) {
+    return x * x * x * x;
+  },
+  easeOutQuart: function (x) {
+    return 1 - pow( 1 - x, 4 );
+  },
+  easeInOutQuart: function (x) {
+    return x < 0.5 ?
+      8 * x * x * x * x :
+      1 - pow( -2 * x + 2, 4 ) / 2;
+  },
+  easeInQuint: function (x) {
+    return x * x * x * x * x;
+  },
+  easeOutQuint: function (x) {
+    return 1 - pow( 1 - x, 5 );
+  },
+  easeInOutQuint: function (x) {
+    return x < 0.5 ?
+      16 * x * x * x * x * x :
+      1 - pow( -2 * x + 2, 5 ) / 2;
+  },
+  easeInSine: function (x) {
+    return 1 - cos( x * PI/2 );
+  },
+  easeOutSine: function (x) {
+    return sin( x * PI/2 );
+  },
+  easeInOutSine: function (x) {
+    return -( cos( PI * x ) - 1 ) / 2;
+  },
+  easeInExpo: function (x) {
+    return x === 0 ? 0 : pow( 2, 10 * x - 10 );
+  },
+  easeOutExpo: function (x) {
+    return x === 1 ? 1 : 1 - pow( 2, -10 * x );
+  },
+  easeInOutExpo: function (x) {
+    return x === 0 ? 0 : x === 1 ? 1 : x < 0.5 ?
+      pow( 2, 20 * x - 10 ) / 2 :
+      ( 2 - pow( 2, -20 * x + 10 ) ) / 2;
+  },
+  easeInCirc: function (x) {
+    return 1 - sqrt( 1 - pow( x, 2 ) );
+  },
+  easeOutCirc: function (x) {
+    return sqrt( 1 - pow( x - 1, 2 ) );
+  },
+  easeInOutCirc: function (x) {
+    return x < 0.5 ?
+      ( 1 - sqrt( 1 - pow( 2 * x, 2 ) ) ) / 2 :
+      ( sqrt( 1 - pow( -2 * x + 2, 2 ) ) + 1 ) / 2;
+  },
+  easeInElastic: function (x) {
+    return x === 0 ? 0 : x === 1 ? 1 :
+      -pow( 2, 10 * x - 10 ) * sin( ( x * 10 - 10.75 ) * c4 );
+  },
+  easeOutElastic: function (x) {
+    return x === 0 ? 0 : x === 1 ? 1 :
+      pow( 2, -10 * x ) * sin( ( x * 10 - 0.75 ) * c4 ) + 1;
+  },
+  easeInOutElastic: function (x) {
+    return x === 0 ? 0 : x === 1 ? 1 : x < 0.5 ?
+      -( pow( 2, 20 * x - 10 ) * sin( ( 20 * x - 11.125 ) * c5 )) / 2 :
+      pow( 2, -20 * x + 10 ) * sin( ( 20 * x - 11.125 ) * c5 ) / 2 + 1;
+  },
+  easeInBack: function (x) {
+    return c3 * x * x * x - c1 * x * x;
+  },
+  easeOutBack: function (x) {
+    return 1 + c3 * pow( x - 1, 3 ) + c1 * pow( x - 1, 2 );
+  },
+  easeInOutBack: function (x) {
+    return x < 0.5 ?
+      ( pow( 2 * x, 2 ) * ( ( c2 + 1 ) * 2 * x - c2 ) ) / 2 :
+      ( pow( 2 * x - 2, 2 ) *( ( c2 + 1 ) * ( x * 2 - 2 ) + c2 ) + 2 ) / 2;
+  },
+  easeInBounce: function (x) {
+    return 1 - bounceOut( 1 - x );
+  },
+  easeOutBounce: bounceOut,
+  easeInOutBounce: function (x) {
+    return x < 0.5 ?
+      ( 1 - bounceOut( 1 - 2 * x ) ) / 2 :
+      ( 1 + bounceOut( 2 * x - 1 ) ) / 2;
+  }
+});
+
+});
+
+  </script>
+
+  <script>
+    (function($) {
+  "use strict";
+
+
+  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: (target.offset().top - 70)
+        }, 1000, "easeInOutExpo");
+        return false;
+      }
+    }
+  });
+
+
+  $('.js-scroll-trigger').click(function() {
+    $('.navbar-collapse').collapse('hide');
+  });
+
+
+  $('body').scrollspy({
+    target: '#mainNav',
+    offset: 100
+  });
+
+  // Collapse Navbar
+  var navbarCollapse = function() {
+    if ($("#mainNav").offset().top > 100) {
+      $("#mainNav").addClass("navbar-shrink");
+    } else {
+      $("#mainNav").removeClass("navbar-shrink");
+    }
+  };
+
+  navbarCollapse();
+
+  $(window).scroll(navbarCollapse);
+
+})(jQuery);
+  </script>
+
+</body>
+
+</html>

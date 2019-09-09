@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'bulma.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<style>
+    @media (min-width: 1200px) {
+    .container{
+        max-width: 970px;
+    }
+}
+        body{
+    background-color: #f5f5f5;
+
+font-family: 'Montserrat', sans-serif;
+    background-image: url(https://i2.wp.com/afrifarmer.com/wp-content/uploads/2018/11/vegetable.jpg?fit=2000%2C1325&ssl=1);
+     background-repeat: no-repeat;
+     background-size: cover;
+        }
+        .jumbotron{
+       background-color:#cacacc;
+        }
+</style>
+    <title>{{title}}</title>
+</head>
+<body>
+<br>
+<br/>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="/">RYTHU-BAZAR</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/buyer_login/">Buyer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/farmer_login/">Farmer</a>
+          </li>
+          {% ifnotequal user.is_authenticated 1 %}
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/signup/">Sign up</a>
+          </li>
+           &nbsp&nbsp
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/login/">Login</a>
+          </li>
+            {% else %}
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#">{{user}}</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/logout/">Logout</a>
+          </li>
+            {% endifnotequal %}
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+<br>
+<br>
+
+{% block content %}
+<div class="container"  >
+            <div class="jumbotron">
+  <form   method="post">
+      {{form.as_p}}
+      {% csrf_token %}
+      <center>
+      <input type="submit" class="btn btn-primary" name="" value="Submit">
+      </center>
+  </form>
+            </div></div>
+{% endblock %}
+</body>
+</html>
